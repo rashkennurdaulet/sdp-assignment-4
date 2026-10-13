@@ -1,15 +1,21 @@
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+package facade;
+
 public class Main {
     public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
+        Amplifier amp = new Amplifier();
+        DvdPlayer dvd = new DvdPlayer();
+        Projector projector = new Projector();
+        TheaterLights lights = new TheaterLights();
+        Screen screen = new Screen();
+        PopcornPopper popper = new PopcornPopper();
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            System.out.println("i = " + i);
-        }
+        HomeTheaterFacade homeTheater = new HomeTheaterFacade(amp, dvd, projector, lights, screen, popper);
+
+        System.out.println("--- SUCCESSFUL SCENARIO ---");
+        homeTheater.watchMovie("Inception");
+        homeTheater.endMovie("Inception");
+
+        System.out.println("\n--- ERROR HANDLING SCENARIO ---");
+        homeTheater.watchMovie("");
     }
 }
